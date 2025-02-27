@@ -40,6 +40,7 @@ jobs:
         with:
           clippy: true
           rustfmt: true
+          cli: true
           cargo-cache-key: cargo-programs-lint
           cargo-cache-fallback-key: cargo-programs
 
@@ -185,6 +186,7 @@ jobs:
       - name: Setup Environment
         uses: ./.github/actions/setup
         with:
+          cli: true
           cargo-cache-key: cargo-program-tests
           cargo-cache-fallback-key: cargo-programs
           solana: true
