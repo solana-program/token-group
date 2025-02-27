@@ -13,17 +13,17 @@ edition = { workspace = true }
 bytemuck = "1.20.0"
 num-derive = "0.4"
 num-traits = "0.2"
-solana-decode-error = "2.1.0"
-solana-instruction = "2.1.0"
-solana-msg = "2.1.0"
-solana-program-error = "2.1.0"
-solana-pubkey = "2.1.0"
+solana-decode-error = "2.2.1"
+solana-instruction = "2.2.1"
+solana-msg = "2.2.1"
+solana-program-error = "2.2.1"
+solana-pubkey = "2.2.1"
 spl-discriminator = "0.4.0"
 spl-pod = "0.5.0"
 thiserror = "2.0"
 
 [dev-dependencies]
-solana-sha256-hasher = "2.1.0"
+solana-sha256-hasher = "2.2.1"
 spl-type-length-value = { version = "0.7.0", features = ["derive"] }
 
 [lib]
