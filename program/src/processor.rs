@@ -36,7 +36,7 @@ fn check_update_authority(
     Ok(())
 }
 
-/// Processes an [InitializeGroup](enum.GroupInterfaceInstruction.html)
+/// Processes an [`InitializeGroup`](enum.GroupInterfaceInstruction.html)
 /// instruction
 pub fn process_initialize_group(
     _program_id: &Pubkey,
@@ -79,8 +79,7 @@ pub fn process_initialize_group(
     Ok(())
 }
 
-/// Processes an
-/// [UpdateGroupMaxSize](enum.GroupInterfaceInstruction.html)
+/// Processes an [`UpdateGroupMaxSize`](enum.GroupInterfaceInstruction.html)
 /// instruction
 pub fn process_update_group_max_size(
     _program_id: &Pubkey,
@@ -108,8 +107,7 @@ pub fn process_update_group_max_size(
     Ok(())
 }
 
-/// Processes an
-/// [UpdateGroupAuthority](enum.GroupInterfaceInstruction.html)
+/// Processes an [`UpdateGroupAuthority`](enum.GroupInterfaceInstruction.html)
 /// instruction
 pub fn process_update_group_authority(
     _program_id: &Pubkey,
@@ -137,7 +135,7 @@ pub fn process_update_group_authority(
     Ok(())
 }
 
-/// Processes an [InitializeMember](enum.GroupInterfaceInstruction.html)
+/// Processes an [`InitializeMember`](enum.GroupInterfaceInstruction.html)
 /// instruction
 pub fn process_initialize_member(_program_id: &Pubkey, accounts: &[AccountInfo]) -> ProgramResult {
     // For this group, we are going to assume the group has been
