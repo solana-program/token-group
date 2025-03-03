@@ -6,7 +6,11 @@ on:
       package_path:
         description: Path to directory with package to release
         required: true
-        type: string
+        default: 'interface'
+        type: choice
+        options:
+          - interface
+          - program
       level:
         description: Level
         required: true
