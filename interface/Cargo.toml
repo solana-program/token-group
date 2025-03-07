@@ -24,7 +24,7 @@ thiserror = "2.0"
 
 [dev-dependencies]
 solana-sha256-hasher = "2.2.1"
-spl-type-length-value = { version = "0.7.0", features = ["derive"] }
+spl-type-length-value = { version = "0.8.0", features = ["derive"] }
 
 [lib]
 crate-type = ["cdylib", "lib"]
