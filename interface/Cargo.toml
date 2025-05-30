@@ -12,10 +12,9 @@ edition = { workspace = true }
 [dependencies]
 bytemuck = "1.23.0"
 num-derive = "0.4"
+num_enum = "0.7"
 num-traits = "0.2"
-solana-decode-error = "2.2.1"
 solana-instruction = "2.2.1"
-solana-msg = "2.2.1"
 solana-program-error = "2.2.1"
 solana-pubkey = "2.2.1"
 spl-discriminator = "0.4.0"
