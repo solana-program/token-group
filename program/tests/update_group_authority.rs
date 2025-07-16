@@ -4,13 +4,14 @@ mod setup;
 
 use {
     setup::{setup_mint, setup_program_test},
-    solana_program::{instruction::InstructionError, pubkey::Pubkey, system_instruction},
+    solana_program::{instruction::InstructionError, pubkey::Pubkey},
     solana_program_test::tokio,
     solana_sdk::{
         signature::Keypair,
         signer::Signer,
         transaction::{Transaction, TransactionError},
     },
+    solana_system_interface::instruction as system_instruction,
     spl_token_client::token::Token,
     spl_token_group_interface::{
         error::TokenGroupError,
