@@ -7661,6 +7661,7 @@ dependencies = [
  "solana-program-error",
  "solana-program-test",
  "solana-sdk",
+ "solana-system-interface",
  "spl-discriminator",
  "spl-pod",
  "spl-token-2022 9.0.0",
