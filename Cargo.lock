@@ -7964,7 +7964,7 @@ dependencies = [
 
 [[package]]
 name = "spl-token-group-interface"
-version = "0.7.0"
+version = "0.7.1"
 dependencies = [
  "bytemuck",
  "num-derive",

@@ -1,6 +1,6 @@
 [package]
 name = "spl-token-group-interface"
-version = "0.7.0"
+version = "0.7.1"
 description = "Solana Program Library Token Group Interface"
 documentation = "https://docs.rs/spl-token-group-interface"
 authors = { workspace = true }
