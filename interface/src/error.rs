@@ -41,10 +41,7 @@ impl From<TokenGroupError> for ProgramError {
 }
 
 impl ToStr for TokenGroupError {
-    fn to_str<E>(&self) -> &'static str
-    where
-        E: 'static + ToStr + TryFrom<u32>,
-    {
+    fn to_str(&self) -> &'static str {
         match self {
             TokenGroupError::SizeExceedsNewMaxSize => "Size is greater than proposed max size",
             TokenGroupError::SizeExceedsMaxSize => "Size is greater than max size",
