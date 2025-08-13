@@ -580,7 +580,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "115e54d64eb62cdebad391c19efc9dce4981c690c85a33a12199d99bb9546fee"
 dependencies = [
  "borsh-derive 0.10.4",
- "hashbrown 0.12.3",
+ "hashbrown 0.13.2",
 ]
 
 [[package]]
@@ -4014,7 +4014,7 @@ dependencies = [
  "spl-token",
  "spl-token-2022 8.0.1",
  "spl-token-group-interface 0.6.0",
- "spl-token-metadata-interface",
+ "spl-token-metadata-interface 0.7.0",
  "thiserror 2.0.12",
  "zstd",
 ]
@@ -4130,6 +4130,7 @@ version = "1.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0a7a457086457ea9db9a5199d719dc8734dc2d0342fad0d8f77633c31eb62f19"
 dependencies = [
+ "borsh 1.5.7",
  "bytemuck",
  "bytemuck_derive",
  "five8",
@@ -4311,6 +4312,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "718333bcd0a1a7aed6655aa66bef8d7fb047944922b2d3a18f49cbc13e73d004"
 dependencies = [
  "borsh 0.10.4",
+ "borsh 1.5.7",
+]
+
+[[package]]
+name = "solana-borsh"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc402b16657abbfa9991cd5cbfac5a11d809f7e7d28d3bb291baeb088b39060e"
+dependencies = [
  "borsh 1.5.7",
 ]
 
@@ -4626,7 +4636,7 @@ checksum = "8be5c9ffd6dd67004bc93dfd2f613ccb01b95fd4e0ad037434558cfa0fe130a7"
 dependencies = [
  "agave-feature-set",
  "log",
- "solana-borsh",
+ "solana-borsh 2.2.1",
  "solana-builtins-default-costs",
  "solana-compute-budget",
  "solana-compute-budget-interface",
@@ -4707,7 +4717,7 @@ dependencies = [
  "ahash 0.8.11",
  "log",
  "solana-bincode",
- "solana-borsh",
+ "solana-borsh 2.2.1",
  "solana-builtins-default-costs",
  "solana-clock",
  "solana-compute-budget",
@@ -5505,7 +5515,7 @@ dependencies = [
  "solana-big-mod-exp",
  "solana-bincode",
  "solana-blake3-hasher",
- "solana-borsh",
+ "solana-borsh 2.2.1",
  "solana-clock",
  "solana-cpi",
  "solana-decode-error",
@@ -7139,7 +7149,7 @@ dependencies = [
  "spl-token",
  "spl-token-2022 8.0.1",
  "spl-token-group-interface 0.6.0",
- "spl-token-metadata-interface",
+ "spl-token-metadata-interface 0.7.0",
  "thiserror 2.0.12",
 ]
 
@@ -7633,6 +7643,7 @@ version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b1233fdecd7461611d69bb87bc2e95af742df47291975d21232a0be8217da9de"
 dependencies = [
+ "borsh 1.5.7",
  "bytemuck",
  "bytemuck_derive",
  "num-derive",
@@ -7781,7 +7792,7 @@ dependencies = [
  "spl-token-confidential-transfer-proof-extraction 0.3.0",
  "spl-token-confidential-transfer-proof-generation",
  "spl-token-group-interface 0.6.0",
- "spl-token-metadata-interface",
+ "spl-token-metadata-interface 0.7.0",
  "spl-transfer-hook-interface",
  "spl-type-length-value 0.8.0",
  "thiserror 2.0.12",
@@ -7825,7 +7836,7 @@ dependencies = [
  "spl-token-confidential-transfer-proof-extraction 0.4.0",
  "spl-token-confidential-transfer-proof-generation",
  "spl-token-group-interface 0.6.0",
- "spl-token-metadata-interface",
+ "spl-token-metadata-interface 0.7.0",
  "spl-transfer-hook-interface",
  "spl-type-length-value 0.8.0",
  "thiserror 2.0.12",
@@ -7857,7 +7868,7 @@ dependencies = [
  "spl-token-confidential-transfer-proof-extraction 0.4.0",
  "spl-token-confidential-transfer-proof-generation",
  "spl-token-group-interface 0.6.0",
- "spl-token-metadata-interface",
+ "spl-token-metadata-interface 0.7.0",
  "spl-transfer-hook-interface",
  "thiserror 2.0.12",
 ]
@@ -7939,7 +7950,7 @@ dependencies = [
  "spl-token-2022 9.0.0",
  "spl-token-client",
  "spl-token-group-interface 0.6.0",
- "spl-token-metadata-interface",
+ "spl-token-metadata-interface 0.8.0",
  "spl-type-length-value 0.8.0",
 ]
 
@@ -7989,7 +8000,7 @@ dependencies = [
  "borsh 1.5.7",
  "num-derive",
  "num-traits",
- "solana-borsh",
+ "solana-borsh 2.2.1",
  "solana-decode-error",
  "solana-instruction 2.3.0",
  "solana-msg 2.2.1",
@@ -7998,6 +8009,25 @@ dependencies = [
  "spl-discriminator 0.4.1",
  "spl-pod 0.5.1",
  "spl-type-length-value 0.8.0",
+ "thiserror 2.0.12",
+]
+
+[[package]]
+name = "spl-token-metadata-interface"
+version = "0.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9c467c7c3bd056f8fe60119e7ec34ddd6f23052c2fa8f1f51999098063b72676"
+dependencies = [
+ "borsh 1.5.7",
+ "num-derive",
+ "num-traits",
+ "solana-borsh 3.0.0",
+ "solana-instruction 3.0.0",
+ "solana-program-error 3.0.0",
+ "solana-pubkey 3.0.0",
+ "spl-discriminator 0.5.1",
+ "spl-pod 0.7.1",
+ "spl-type-length-value 0.9.0",
  "thiserror 2.0.12",
 ]
 
