@@ -27,7 +27,7 @@ solana-program-test = "2.3.4"
 solana-sdk = "2.2.1"
 spl-discriminator = "0.4.0"
 spl-token-client = "0.16.1"
-spl-token-metadata-interface = "0.7.0"
+spl-token-metadata-interface = "0.8.0"
 
 [lib]
 crate-type = ["cdylib", "lib"]
