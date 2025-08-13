@@ -17,7 +17,7 @@ num-traits = "0.2"
 solana-instruction = "3.0.0"
 solana-program-error = "3.0.0"
 solana-pubkey = "3.0.0"
-spl-discriminator = "0.5.0"
+spl-discriminator = "0.5.1"
 spl-pod = "0.7.0"
 thiserror = "2.0"
 
