@@ -10,7 +10,7 @@ env:
   JS_PACKAGES: "['clients-js-legacy']"
   SBPF_PROGRAM_PACKAGES: "['program']"
   RUST_PACKAGES: "['interface', 'program']"
-  WASM_PACKAGES: "['interface', 'program']"
+  WASM_PACKAGES: "['interface']"
 
 jobs:
   set_env:
