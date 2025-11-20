@@ -22,7 +22,7 @@ optionally be implemented, but are not required.
 
 An example program demonstrating how to implement the SPL Token-Group Interface
 can be found in the
-[example](https://github.com/solana-labs/solana-program-library/tree/master/token-group/example)
+[example](https://github.com/solana-program/token-group/tree/main/program)
 directory alongside this interface's directory.
 
 In addition to demonstrating what a token-group program might look like, it
@@ -30,7 +30,7 @@ also provides some reference examples for using the SPL Type Length Value
 library to manage TLV-encoded data within account data.
 
 For more information on SPL Type Length Value you can reference the library's
-[source code](https://github.com/solana-labs/solana-program-library/tree/master/libraries/type-length-value).
+[source code](https://github.com/solana-program/libraries/tree/main/type-length-value).
 
 ### Motivation
 
@@ -135,4 +135,4 @@ data fields in a different TLV entry.
 
 As mentioned previously, you can find more information about
 TLV / type-length-value structures at the
-[spl-type-length-value repo](https://github.com/solana-labs/solana-program-library/tree/master/libraries/type-length-value).
+[spl-type-length-value repo](https://github.com/solana-program/libraries/tree/main/type-length-value).
