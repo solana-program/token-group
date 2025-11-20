@@ -26,7 +26,7 @@ spl-type-length-value = "0.8.0"
 solana-program-test = "2.3.4"
 solana-sdk = "2.2.1"
 spl-discriminator = "0.5.1"
-spl-token-client = "0.16.1"
+spl-token-client = "0.17.0"
 spl-token-metadata-interface = "0.8.0"
 
 [lib]
