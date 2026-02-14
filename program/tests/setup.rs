@@ -1,5 +1,3 @@
-#![cfg(feature = "test-sbf")]
-
 use {
     solana_program_test::{processor, tokio::sync::Mutex, ProgramTest, ProgramTestContext},
     solana_sdk::{pubkey::Pubkey, signature::Keypair, signer::Signer},
