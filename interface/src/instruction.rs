@@ -1,16 +1,14 @@
 //! Instruction types
 
 use {
+    alloc::{vec, vec::Vec},
     bytemuck::{Pod, Zeroable},
-    solana_instruction::{AccountMeta, Instruction},
+    solana_address::Address,
+    solana_instruction::{account_meta::AccountMeta, Instruction},
+    solana_nullable::MaybeNull,
     solana_program_error::ProgramError,
-    solana_pubkey::Pubkey,
+    solana_zero_copy::unaligned::U64,
     spl_discriminator::{ArrayDiscriminator, SplDiscriminate},
-    spl_pod::{
-        bytemuck::{pod_bytes_of, pod_from_bytes},
-        optional_keys::OptionalNonZeroPubkey,
-        primitives::PodU64,
-    },
 };
 
 /// Instruction data for initializing a new `Group`
@@ -19,9 +17,9 @@ use {
 #[discriminator_hash_input("spl_token_group_interface:initialize_token_group")]
 pub struct InitializeGroup {
     /// Update authority for the group
-    pub update_authority: OptionalNonZeroPubkey,
+    pub update_authority: MaybeNull<Address>,
     /// The maximum number of group members
-    pub max_size: PodU64,
+    pub max_size: U64,
 }
 
 /// Instruction data for updating the max size of a `Group`
@@ -30,7 +28,7 @@ pub struct InitializeGroup {
 #[discriminator_hash_input("spl_token_group_interface:update_group_max_size")]
 pub struct UpdateGroupMaxSize {
     /// New max size for the group
-    pub max_size: PodU64,
+    pub max_size: U64,
 }
 
 /// Instruction data for updating the authority of a `Group`
@@ -39,7 +37,7 @@ pub struct UpdateGroupMaxSize {
 #[discriminator_hash_input("spl_token_group_interface:update_authority")]
 pub struct UpdateGroupAuthority {
     /// New authority for the group, or unset if `None`
-    pub new_authority: OptionalNonZeroPubkey,
+    pub new_authority: MaybeNull<Address>,
 }
 
 /// Instruction data for initializing a new `Member` of a `Group`
@@ -102,19 +100,23 @@ impl TokenGroupInstruction {
         let (discriminator, rest) = input.split_at(ArrayDiscriminator::LENGTH);
         Ok(match discriminator {
             InitializeGroup::SPL_DISCRIMINATOR_SLICE => {
-                let data = pod_from_bytes::<InitializeGroup>(rest)?;
+                let data = bytemuck::try_from_bytes::<InitializeGroup>(rest)
+                    .map_err(|_| ProgramError::InvalidArgument)?;
                 Self::InitializeGroup(*data)
             }
             UpdateGroupMaxSize::SPL_DISCRIMINATOR_SLICE => {
-                let data = pod_from_bytes::<UpdateGroupMaxSize>(rest)?;
+                let data = bytemuck::try_from_bytes::<UpdateGroupMaxSize>(rest)
+                    .map_err(|_| ProgramError::InvalidArgument)?;
                 Self::UpdateGroupMaxSize(*data)
             }
             UpdateGroupAuthority::SPL_DISCRIMINATOR_SLICE => {
-                let data = pod_from_bytes::<UpdateGroupAuthority>(rest)?;
+                let data = bytemuck::try_from_bytes::<UpdateGroupAuthority>(rest)
+                    .map_err(|_| ProgramError::InvalidArgument)?;
                 Self::UpdateGroupAuthority(*data)
             }
             InitializeMember::SPL_DISCRIMINATOR_SLICE => {
-                let data = pod_from_bytes::<InitializeMember>(rest)?;
+                let data = bytemuck::try_from_bytes::<InitializeMember>(rest)
+                    .map_err(|_| ProgramError::InvalidArgument)?;
                 Self::InitializeMember(*data)
             }
             _ => return Err(ProgramError::InvalidInstructionData),
@@ -127,19 +129,19 @@ impl TokenGroupInstruction {
         match self {
             Self::InitializeGroup(data) => {
                 buf.extend_from_slice(InitializeGroup::SPL_DISCRIMINATOR_SLICE);
-                buf.extend_from_slice(pod_bytes_of(data));
+                buf.extend_from_slice(bytemuck::bytes_of(data));
             }
             Self::UpdateGroupMaxSize(data) => {
                 buf.extend_from_slice(UpdateGroupMaxSize::SPL_DISCRIMINATOR_SLICE);
-                buf.extend_from_slice(pod_bytes_of(data));
+                buf.extend_from_slice(bytemuck::bytes_of(data));
             }
             Self::UpdateGroupAuthority(data) => {
                 buf.extend_from_slice(UpdateGroupAuthority::SPL_DISCRIMINATOR_SLICE);
-                buf.extend_from_slice(pod_bytes_of(data));
+                buf.extend_from_slice(bytemuck::bytes_of(data));
             }
             Self::InitializeMember(data) => {
                 buf.extend_from_slice(InitializeMember::SPL_DISCRIMINATOR_SLICE);
-                buf.extend_from_slice(pod_bytes_of(data));
+                buf.extend_from_slice(bytemuck::bytes_of(data));
             }
         };
         buf
@@ -148,14 +150,14 @@ impl TokenGroupInstruction {
 
 /// Creates a `InitializeGroup` instruction
 pub fn initialize_group(
-    program_id: &Pubkey,
-    group: &Pubkey,
-    mint: &Pubkey,
-    mint_authority: &Pubkey,
-    update_authority: Option<Pubkey>,
+    program_id: &Address,
+    group: &Address,
+    mint: &Address,
+    mint_authority: &Address,
+    update_authority: Option<Address>,
     max_size: u64,
 ) -> Instruction {
-    let update_authority = OptionalNonZeroPubkey::try_from(update_authority)
+    let update_authority = MaybeNull::<Address>::try_from(update_authority)
         .expect("Failed to deserialize `Option<Pubkey>`");
     let data = TokenGroupInstruction::InitializeGroup(InitializeGroup {
         update_authority,
@@ -175,9 +177,9 @@ pub fn initialize_group(
 
 /// Creates a `UpdateGroupMaxSize` instruction
 pub fn update_group_max_size(
-    program_id: &Pubkey,
-    group: &Pubkey,
-    update_authority: &Pubkey,
+    program_id: &Address,
+    group: &Address,
+    update_authority: &Address,
     max_size: u64,
 ) -> Instruction {
     let data = TokenGroupInstruction::UpdateGroupMaxSize(UpdateGroupMaxSize {
@@ -196,12 +198,12 @@ pub fn update_group_max_size(
 
 /// Creates a `UpdateGroupAuthority` instruction
 pub fn update_group_authority(
-    program_id: &Pubkey,
-    group: &Pubkey,
-    current_authority: &Pubkey,
-    new_authority: Option<Pubkey>,
+    program_id: &Address,
+    group: &Address,
+    current_authority: &Address,
+    new_authority: Option<Address>,
 ) -> Instruction {
-    let new_authority = OptionalNonZeroPubkey::try_from(new_authority)
+    let new_authority = MaybeNull::<Address>::try_from(new_authority)
         .expect("Failed to deserialize `Option<Pubkey>`");
     let data =
         TokenGroupInstruction::UpdateGroupAuthority(UpdateGroupAuthority { new_authority }).pack();
@@ -218,12 +220,12 @@ pub fn update_group_authority(
 /// Creates a `InitializeMember` instruction
 #[allow(clippy::too_many_arguments)]
 pub fn initialize_member(
-    program_id: &Pubkey,
-    member: &Pubkey,
-    member_mint: &Pubkey,
-    member_mint_authority: &Pubkey,
-    group: &Pubkey,
-    group_update_authority: &Pubkey,
+    program_id: &Address,
+    member: &Address,
+    member_mint: &Address,
+    member_mint_authority: &Address,
+    group: &Address,
+    group_update_authority: &Address,
 ) -> Instruction {
     let data = TokenGroupInstruction::InitializeMember(InitializeMember {}).pack();
     Instruction {
@@ -241,7 +243,7 @@ pub fn initialize_member(
 
 #[cfg(test)]
 mod test {
-    use {super::*, crate::NAMESPACE, solana_sha256_hasher::hashv};
+    use {super::*, crate::NAMESPACE, alloc::format, solana_sha256_hasher::hashv};
 
     fn instruction_pack_unpack<I>(instruction: TokenGroupInstruction, discriminator: &[u8], data: I)
     where
@@ -249,7 +251,7 @@ mod test {
     {
         let mut expect = vec![];
         expect.extend_from_slice(discriminator.as_ref());
-        expect.extend_from_slice(pod_bytes_of(&data));
+        expect.extend_from_slice(bytemuck::bytes_of(&data));
         let packed = instruction.pack();
         assert_eq!(packed, expect);
         let unpacked = TokenGroupInstruction::unpack(&expect).unwrap();
@@ -259,7 +261,7 @@ mod test {
     #[test]
     fn initialize_group_pack() {
         let data = InitializeGroup {
-            update_authority: OptionalNonZeroPubkey::default(),
+            update_authority: MaybeNull::<Address>::default(),
             max_size: 100.into(),
         };
         let instruction = TokenGroupInstruction::InitializeGroup(data);
@@ -282,7 +284,7 @@ mod test {
     #[test]
     fn update_authority_pack() {
         let data = UpdateGroupAuthority {
-            new_authority: OptionalNonZeroPubkey::default(),
+            new_authority: MaybeNull::<Address>::default(),
         };
         let instruction = TokenGroupInstruction::UpdateGroupAuthority(data);
         let preimage = hashv(&[format!("{NAMESPACE}:update_authority").as_bytes()]);

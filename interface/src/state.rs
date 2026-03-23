@@ -3,10 +3,11 @@
 use {
     crate::error::TokenGroupError,
     bytemuck::{Pod, Zeroable},
+    solana_address::Address,
+    solana_nullable::MaybeNull,
     solana_program_error::ProgramError,
-    solana_pubkey::Pubkey,
+    solana_zero_copy::unaligned::U64,
     spl_discriminator::SplDiscriminate,
-    spl_pod::{error::PodSliceError, optional_keys::OptionalNonZeroPubkey, primitives::PodU64},
 };
 
 /// Data struct for a `TokenGroup`
@@ -15,23 +16,23 @@ use {
 #[discriminator_hash_input("spl_token_group_interface:group")]
 pub struct TokenGroup {
     /// The authority that can sign to update the group
-    pub update_authority: OptionalNonZeroPubkey,
+    pub update_authority: MaybeNull<Address>,
     /// The associated mint, used to counter spoofing to be sure that group
     /// belongs to a particular mint
-    pub mint: Pubkey,
+    pub mint: Address,
     /// The current number of group members
-    pub size: PodU64,
+    pub size: U64,
     /// The maximum number of group members
-    pub max_size: PodU64,
+    pub max_size: U64,
 }
 
 impl TokenGroup {
     /// Creates a new `TokenGroup` state
-    pub fn new(mint: &Pubkey, update_authority: OptionalNonZeroPubkey, max_size: u64) -> Self {
+    pub fn new(mint: &Address, update_authority: MaybeNull<Address>, max_size: u64) -> Self {
         Self {
             mint: *mint,
             update_authority,
-            size: PodU64::default(), // [0, 0, 0, 0, 0, 0, 0, 0]
+            size: U64::default(), // [0, 0, 0, 0, 0, 0, 0, 0]
             max_size: max_size.into(),
         }
     }
@@ -51,7 +52,7 @@ impl TokenGroup {
         // The new size cannot be greater than the max size
         let new_size = u64::from(self.size)
             .checked_add(1)
-            .ok_or::<ProgramError>(PodSliceError::CalculationFailure.into())?;
+            .ok_or(ProgramError::ArithmeticOverflow)?;
         if new_size > u64::from(self.max_size) {
             return Err(TokenGroupError::SizeExceedsMaxSize.into());
         }
@@ -67,15 +68,15 @@ impl TokenGroup {
 pub struct TokenGroupMember {
     /// The associated mint, used to counter spoofing to be sure that member
     /// belongs to a particular mint
-    pub mint: Pubkey,
+    pub mint: Address,
     /// The pubkey of the `TokenGroup`
-    pub group: Pubkey,
+    pub group: Address,
     /// The member number
-    pub member_number: PodU64,
+    pub member_number: U64,
 }
 impl TokenGroupMember {
     /// Creates a new `TokenGroupMember` state
-    pub fn new(mint: &Pubkey, group: &Pubkey, member_number: u64) -> Self {
+    pub fn new(mint: &Address, group: &Address, member_number: u64) -> Self {
         Self {
             mint: *mint,
             group: *group,
@@ -89,10 +90,11 @@ mod tests {
     use {
         super::*,
         crate::NAMESPACE,
+        alloc::{format, vec},
+        core::mem::size_of,
         solana_sha256_hasher::hashv,
         spl_discriminator::ArrayDiscriminator,
         spl_type_length_value::state::{TlvState, TlvStateBorrowed, TlvStateMut},
-        std::mem::size_of,
     };
 
     #[test]
@@ -112,15 +114,15 @@ mod tests {
     fn tlv_state_pack() {
         // Make sure we can pack more than one instance of each type
         let group = TokenGroup {
-            mint: Pubkey::new_unique(),
-            update_authority: OptionalNonZeroPubkey::try_from(Some(Pubkey::new_unique())).unwrap(),
+            mint: Address::new_unique(),
+            update_authority: MaybeNull::<Address>::try_from(Some(Address::new_unique())).unwrap(),
             size: 10.into(),
             max_size: 20.into(),
         };
 
         let member = TokenGroupMember {
-            mint: Pubkey::new_unique(),
-            group: Pubkey::new_unique(),
+            mint: Address::new_unique(),
+            group: Address::new_unique(),
             member_number: 0.into(),
         };
 
@@ -149,8 +151,8 @@ mod tests {
         // Test with a `Some` max size
         let max_size = 10;
         let mut group = TokenGroup {
-            mint: Pubkey::new_unique(),
-            update_authority: OptionalNonZeroPubkey::try_from(Some(Pubkey::new_unique())).unwrap(),
+            mint: Address::new_unique(),
+            update_authority: MaybeNull::<Address>::try_from(Some(Address::new_unique())).unwrap(),
             size: 0.into(),
             max_size: max_size.into(),
         };
@@ -177,8 +179,8 @@ mod tests {
     #[test]
     fn increment_current_size() {
         let mut group = TokenGroup {
-            mint: Pubkey::new_unique(),
-            update_authority: OptionalNonZeroPubkey::try_from(Some(Pubkey::new_unique())).unwrap(),
+            mint: Address::new_unique(),
+            update_authority: MaybeNull::<Address>::try_from(Some(Address::new_unique())).unwrap(),
             size: 0.into(),
             max_size: 1.into(),
         };
