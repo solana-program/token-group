@@ -13,7 +13,7 @@ edition = { workspace = true }
 no-entrypoint = []
 
 [dependencies]
-solana-program-error = "3.0.0"
+solana-program-error = "3.0.1"
 solana-program = "3.0.0"
 solana-system-interface = "2"
 spl-pod = "0.7.0"
