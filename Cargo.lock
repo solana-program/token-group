@@ -4564,15 +4564,15 @@ dependencies = [
 
 [[package]]
 name = "solana-account-info"
-version = "3.0.0"
+version = "3.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "82f4691b69b172c687d218dd2f1f23fc7ea5e9aa79df9ac26dab3d8dd829ce48"
+checksum = "a9cf16495d9eb53e3d04e72366a33bb1c20c24e78c171d8b8f5978357b63ae95"
 dependencies = [
  "bincode",
- "serde",
+ "serde_core",
+ "solana-address 2.4.0",
  "solana-program-error",
  "solana-program-memory",
- "solana-pubkey 3.0.0",
 ]
 
 [[package]]
@@ -8192,19 +8192,18 @@ dependencies = [
 
 [[package]]
 name = "spl-type-length-value"
-version = "0.9.0"
+version = "0.9.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ca20a1a19f4507a98ca4b28ff5ed54cac9b9d34ed27863e2bde50a3238f9a6ac"
+checksum = "2504631748c48d2a937414d64a12dcac4588d34bd07d355d648619c189d29435"
 dependencies = [
  "bytemuck",
  "num-derive",
  "num-traits",
  "num_enum",
  "solana-account-info",
- "solana-msg",
  "solana-program-error",
+ "solana-zero-copy",
  "spl-discriminator",
- "spl-pod",
  "spl-type-length-value-derive",
  "thiserror 2.0.18",
 ]
