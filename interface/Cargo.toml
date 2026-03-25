@@ -23,6 +23,7 @@ spl-discriminator = "0.5.2"
 thiserror = { version = "2.0", default-features = false }
 
 [dev-dependencies]
+solana-address = { version = "2.4.0", default-features = false, features = ["atomic", "bytemuck", "nullable"] }
 solana-sha256-hasher = "3.0.0"
 spl-type-length-value = { version = "0.9.1", features = ["derive"] }
 
