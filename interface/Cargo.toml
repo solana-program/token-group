@@ -19,7 +19,7 @@ solana-instruction = { version = "3.3.0", default-features = false }
 solana-nullable = { version = "1.0.0", features = ["bytemuck"] }
 solana-program-error = { version = "3.0.1", default-features = false }
 solana-zero-copy = { version = "1.0.0", features = ["bytemuck"] }
-spl-discriminator = "0.5.1"
+spl-discriminator = "0.5.2"
 thiserror = { version = "2.0", default-features = false }
 
 [dev-dependencies]
