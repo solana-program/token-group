@@ -26,7 +26,7 @@ solana-program-test = { version = "3.1.8", features = ["agave-unstable-api"] }
 solana-sdk = "3.0.0"
 spl-discriminator = "0.5.2"
 spl-token-client = { version = "0.18.0", features = ["dev-context-only-utils"] }
-spl-token-metadata-interface = "0.8.0"
+spl-token-metadata-interface = "1.0.0"
 
 [lib]
 crate-type = ["cdylib", "lib"]

@@ -4542,7 +4542,7 @@ dependencies = [
  "spl-token-2022-interface",
  "spl-token-group-interface 0.7.1",
  "spl-token-interface",
- "spl-token-metadata-interface",
+ "spl-token-metadata-interface 0.8.0",
  "thiserror 2.0.18",
  "zstd",
 ]
@@ -4847,9 +4847,9 @@ dependencies = [
 
 [[package]]
 name = "solana-borsh"
-version = "3.0.0"
+version = "3.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc402b16657abbfa9991cd5cbfac5a11d809f7e7d28d3bb291baeb088b39060e"
+checksum = "c04abbae16f57178a163125805637b8a076175bb5c0002fb04f4792bea901cf7"
 dependencies = [
  "borsh",
 ]
@@ -5824,6 +5824,7 @@ version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "da028344c595c7416769ff648d206de7962571291a4cea24c38a60b6f40d53bb"
 dependencies = [
+ "borsh",
  "bytemuck",
 ]
 
@@ -7426,7 +7427,7 @@ dependencies = [
  "spl-token-2022-interface",
  "spl-token-group-interface 0.7.1",
  "spl-token-interface",
- "spl-token-metadata-interface",
+ "spl-token-metadata-interface 0.8.0",
  "thiserror 2.0.18",
 ]
 
@@ -7948,7 +7949,7 @@ dependencies = [
  "spl-token-confidential-transfer-proof-extraction",
  "spl-token-confidential-transfer-proof-generation",
  "spl-token-group-interface 0.7.1",
- "spl-token-metadata-interface",
+ "spl-token-metadata-interface 0.8.0",
  "spl-transfer-hook-interface",
  "thiserror 2.0.18",
 ]
@@ -7976,7 +7977,7 @@ dependencies = [
  "spl-token-confidential-transfer-proof-extraction",
  "spl-token-confidential-transfer-proof-generation",
  "spl-token-group-interface 0.7.1",
- "spl-token-metadata-interface",
+ "spl-token-metadata-interface 0.8.0",
  "spl-type-length-value",
  "thiserror 2.0.18",
 ]
@@ -8021,7 +8022,7 @@ dependencies = [
  "spl-token-confidential-transfer-proof-generation",
  "spl-token-group-interface 0.7.1",
  "spl-token-interface",
- "spl-token-metadata-interface",
+ "spl-token-metadata-interface 0.8.0",
  "spl-transfer-hook-interface",
  "thiserror 2.0.18",
  "tokio",
@@ -8084,7 +8085,7 @@ dependencies = [
  "spl-token-2022",
  "spl-token-client",
  "spl-token-group-interface 0.7.1",
- "spl-token-metadata-interface",
+ "spl-token-metadata-interface 1.0.0",
  "spl-type-length-value",
 ]
 
@@ -8160,6 +8161,26 @@ dependencies = [
  "solana-pubkey 3.0.0",
  "spl-discriminator",
  "spl-pod",
+ "spl-type-length-value",
+ "thiserror 2.0.18",
+]
+
+[[package]]
+name = "spl-token-metadata-interface"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "10347d7a9b8179cb9c238f7f19419495e872ec107b4c7594eb26454ce14fe2fc"
+dependencies = [
+ "borsh",
+ "num-derive",
+ "num-traits",
+ "num_enum",
+ "solana-address 2.4.0",
+ "solana-borsh",
+ "solana-instruction",
+ "solana-nullable",
+ "solana-program-error",
+ "spl-discriminator",
  "spl-type-length-value",
  "thiserror 2.0.18",
 ]
