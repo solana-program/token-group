@@ -16,7 +16,7 @@ no-entrypoint = []
 solana-program-error = "3.0.1"
 solana-program = "4.0.0"
 solana-system-interface = "3"
-spl-pod = "0.7.0"
+spl-pod = "0.7.3"
 spl-token-2022 = { version = "10.0.0", features = ["no-entrypoint"] }
 spl-token-group-interface = { version = "0.7.0" }
 spl-type-length-value = "0.9.1"
