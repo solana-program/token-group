@@ -15,7 +15,7 @@ num-derive = "0.4"
 num_enum = { version = "0.7", default-features = false }
 num-traits = { version = "0.2", default-features = false }
 solana-address = { version = "2.6.0", default-features = false, features = ["bytemuck", "nullable"] }
-solana-instruction = { version = "3.3.0", default-features = false }
+solana-instruction = { version = "3.4.0", default-features = false }
 solana-nullable = { version = "1.1.0", features = ["bytemuck"] }
 solana-program-error = { version = "3.0.1", default-features = false }
 solana-zero-copy = { version = "1.0.0", features = ["bytemuck"] }
