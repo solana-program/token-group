@@ -18,7 +18,7 @@ solana-address = { version = "2.6.0", default-features = false, features = ["byt
 solana-instruction = { version = "3.4.0", default-features = false }
 solana-nullable = { version = "1.1.0", features = ["bytemuck"] }
 solana-program-error = { version = "3.0.1", default-features = false }
-solana-zero-copy = { version = "1.0.0", features = ["bytemuck"] }
+solana-zero-copy = { version = "1.0.1", features = ["bytemuck"] }
 spl-discriminator = "0.5.2"
 thiserror = { version = "2.0", default-features = false }
 
