@@ -9,6 +9,8 @@
         "noEmitOnError": true,
         "resolveJsonModule": true,
         "strict": true,
-        "stripInternal": true
+        "stripInternal": true,
+        "ignoreDeprecations": "6.0",
+        "types": ["node"]
     }
 }
