@@ -4937,17 +4937,6 @@ dependencies = [
 
 [[package]]
 name = "solana-big-mod-exp"
-version = "3.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "30c80fb6d791b3925d5ec4bf23a7c169ef5090c013059ec3ed7d0b2c04efa085"
-dependencies = [
- "num-bigint",
- "num-traits",
- "solana-define-syscall 3.0.0",
-]
-
-[[package]]
-name = "solana-big-mod-exp"
 version = "4.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "f05789c4afc39164132db9dcc117218d412ca1f1271d2c629fc6f554c19e5a44"
@@ -5547,27 +5536,6 @@ checksum = "fcc6693d0ea833b880514b9b88d95afb80b42762dca98b0712465d1fcbbcb89e"
 dependencies = [
  "solana-define-syscall 3.0.0",
  "solana-pubkey 3.0.0",
-]
-
-[[package]]
-name = "solana-example-mocks"
-version = "3.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "978855d164845c1b0235d4b4d101cadc55373fffaf0b5b6cfa2194d25b2ed658"
-dependencies = [
- "serde",
- "serde_derive",
- "solana-address-lookup-table-interface",
- "solana-clock 3.2.1",
- "solana-hash 3.1.0",
- "solana-instruction 3.5.1",
- "solana-keccak-hasher",
- "solana-message 3.1.0",
- "solana-nonce",
- "solana-pubkey 3.0.0",
- "solana-sdk-ids",
- "solana-system-interface 2.0.0",
- "thiserror 2.0.21",
 ]
 
 [[package]]
@@ -6185,59 +6153,12 @@ dependencies = [
 
 [[package]]
 name = "solana-program"
-version = "3.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "91b12305dd81045d705f427acd0435a2e46444b65367d7179d7bdcfc3bc5f5eb"
-dependencies = [
- "memoffset",
- "solana-account-info",
- "solana-big-mod-exp 3.0.0",
- "solana-blake3-hasher",
- "solana-borsh",
- "solana-clock 3.2.1",
- "solana-cpi",
- "solana-define-syscall 3.0.0",
- "solana-epoch-rewards",
- "solana-epoch-schedule",
- "solana-epoch-stake",
- "solana-example-mocks 3.0.0",
- "solana-fee-calculator",
- "solana-hash 3.1.0",
- "solana-instruction 3.5.1",
- "solana-instruction-error",
- "solana-instructions-sysvar 3.0.1",
- "solana-keccak-hasher",
- "solana-last-restart-slot",
- "solana-msg",
- "solana-native-token",
- "solana-program-entrypoint",
- "solana-program-error",
- "solana-program-memory",
- "solana-program-option",
- "solana-program-pack",
- "solana-pubkey 3.0.0",
- "solana-rent 3.1.0",
- "solana-sdk-ids",
- "solana-secp256k1-recover",
- "solana-serde-varint",
- "solana-serialize-utils",
- "solana-sha256-hasher",
- "solana-short-vec",
- "solana-slot-hashes",
- "solana-slot-history",
- "solana-stable-layout",
- "solana-sysvar 3.1.1",
- "solana-sysvar-id",
-]
-
-[[package]]
-name = "solana-program"
 version = "4.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4c9f2e1b36b5f1c407cff098a383a45890268e848481af32540064986e7397a6"
 dependencies = [
  "solana-account-info",
- "solana-big-mod-exp 4.0.0",
+ "solana-big-mod-exp",
  "solana-blake3-hasher",
  "solana-borsh",
  "solana-clock 3.2.1",
@@ -6246,7 +6167,7 @@ dependencies = [
  "solana-epoch-rewards",
  "solana-epoch-schedule",
  "solana-epoch-stake",
- "solana-example-mocks 4.0.0",
+ "solana-example-mocks",
  "solana-fee-calculator",
  "solana-hash 4.7.0",
  "solana-instruction 3.5.1",
@@ -6826,7 +6747,7 @@ dependencies = [
  "solana-message 4.6.0",
  "solana-offchain-message",
  "solana-presigner",
- "solana-program 4.1.0",
+ "solana-program",
  "solana-program-memory",
  "solana-pubkey 4.4.0",
  "solana-sanitize",
@@ -7296,7 +7217,7 @@ dependencies = [
  "num-traits",
  "solana-account 4.7.0",
  "solana-account-info",
- "solana-big-mod-exp 4.0.0",
+ "solana-big-mod-exp",
  "solana-blake3-hasher",
  "solana-bls12-381-syscall",
  "solana-bn254",
@@ -7406,8 +7327,6 @@ checksum = "6690d3dd88f15c21edff68eb391ef8800df7a1f5cec84ee3e8d1abf05affdf74"
 dependencies = [
  "base64 0.22.1",
  "bincode",
- "bytemuck",
- "bytemuck_derive",
  "lazy_static",
  "serde",
  "serde_derive",
@@ -8299,7 +8218,7 @@ name = "spl-token-group-example"
 version = "0.2.1"
 dependencies = [
  "solana-nullable",
- "solana-program 3.0.0",
+ "solana-program",
  "solana-program-error",
  "solana-program-test",
  "solana-sdk",

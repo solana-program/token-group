@@ -14,7 +14,7 @@ no-entrypoint = []
 
 [dependencies]
 solana-program-error = "3.0.1"
-solana-program = "3.0.0"
+solana-program = "4.0.0"
 solana-system-interface = "3.2.0"
 solana-nullable = { version = "1.1.1", features = ["bytemuck"] }
 spl-token-2022 = { version = "11.0.0", features = ["no-entrypoint"] }
