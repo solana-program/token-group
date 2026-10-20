@@ -1,6 +1,7 @@
 //! Program state processor
 
 use {
+    solana_nullable::MaybeNull,
     solana_program::{
         account_info::{next_account_info, AccountInfo},
         entrypoint::ProgramResult,
@@ -9,7 +10,6 @@ use {
         program_option::COption,
         pubkey::Pubkey,
     },
-    spl_pod::optional_keys::OptionalNonZeroPubkey,
     spl_token_2022::{extension::StateWithExtensions, state::Mint},
     spl_token_group_interface::{
         error::TokenGroupError,
@@ -23,7 +23,7 @@ use {
 
 fn check_update_authority(
     update_authority_info: &AccountInfo,
-    expected_update_authority: &OptionalNonZeroPubkey,
+    expected_update_authority: &MaybeNull<Pubkey>,
 ) -> Result<(), ProgramError> {
     if !update_authority_info.is_signer {
         return Err(ProgramError::MissingRequiredSignature);
