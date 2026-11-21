@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer';
 import type { Encoder } from '@solana/codecs';
 import type { PublicKey } from '@solana/web3.js';
 import {
