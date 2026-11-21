@@ -38,7 +38,7 @@ async fn test_update_group_max_size() {
 
     let token_client = Token::new(
         client,
-        &spl_token_2022::id(),
+        &spl_token_2022_interface::id(),
         &group_mint.pubkey(),
         Some(0),
         payer.clone(),
@@ -215,7 +215,7 @@ async fn test_update_group_max_size_fail_immutable_group() {
 
     let token_client = Token::new(
         client,
-        &spl_token_2022::id(),
+        &spl_token_2022_interface::id(),
         &group_mint.pubkey(),
         Some(0),
         payer.clone(),

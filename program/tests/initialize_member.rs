@@ -41,7 +41,7 @@ async fn test_initialize_group_member() {
     setup_mint(
         &Token::new(
             client.clone(),
-            &spl_token_2022::id(),
+            &spl_token_2022_interface::id(),
             &group_mint.pubkey(),
             Some(0),
             payer.clone(),
@@ -53,7 +53,7 @@ async fn test_initialize_group_member() {
     setup_mint(
         &Token::new(
             client.clone(),
-            &spl_token_2022::id(),
+            &spl_token_2022_interface::id(),
             &member_mint.pubkey(),
             Some(0),
             payer.clone(),
