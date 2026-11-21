@@ -19,16 +19,10 @@ pub async fn setup_program_test(
     Arc<dyn ProgramClient<ProgramBanksClientProcessTransaction>>,
     Arc<Keypair>,
 ) {
-    let mut program_test = ProgramTest::new(
+    let program_test = ProgramTest::new(
         "spl_token_group_example",
         *program_id,
         processor!(spl_token_group_example::processor::process),
-    );
-    program_test.prefer_bpf(false);
-    program_test.add_program(
-        "spl_token_2022",
-        spl_token_2022::id(),
-        processor!(spl_token_2022::processor::Processor::process),
     );
     let context = program_test.start_with_context().await;
     let payer = Arc::new(context.payer.insecure_clone());
