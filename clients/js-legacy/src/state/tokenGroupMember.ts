@@ -1,3 +1,4 @@
+import type { Buffer } from 'buffer';
 import { PublicKey } from '@solana/web3.js';
 import type { ReadonlyUint8Array } from '@solana/codecs';
 import { fixCodecSize, getBytesCodec, getStructCodec, getU64Codec } from '@solana/codecs';
